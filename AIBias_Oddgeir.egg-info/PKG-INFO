@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
 Name: AIBias-Oddgeir
-Version: 0.0.1
+Version: 0.0.10
 Summary: Package for analysing and mitigating bias in datasets
-Home-page: todo
+Home-page: https://github.com/oddgeirpall/aibias
 Author: Oddgeir Georgsson
 Author-email: oddgeir.pall@gmail.com
 License: UNKNOWN

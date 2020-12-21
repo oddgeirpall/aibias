@@ -97,6 +97,8 @@ def Reweigh(dataset):
             protected_attribute_names = dataset.protected_attribute_names,
             title = dataset.title + ' (Reweighed)',
             weights = df['Weight'].values.copy(),
+            training_features = dataset.train_features,
+            categorical_features = dataset.cat_features,
             alter_dataframe = False)
 
     return transformed_dataset

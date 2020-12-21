@@ -22,9 +22,12 @@ def Reweigh(dataset):
     are weighed lower
 
     Arguments:
-        dataset - A dataset object
+        dataset - (aibias.dataset.Dataset) A dataset object
 
-    Error:
+    Returns:
+        A new dataset object with new weights for each row
+
+    Raises:
         TypeError - If the given dataset is not of type
                     aibias.dataset.Dataset
     """
@@ -97,41 +100,10 @@ def Reweigh(dataset):
             protected_attribute_names = dataset.protected_attribute_names,
             title = dataset.title + ' (Reweighed)',
             weights = df['Weight'].values.copy(),
+            training_features = dataset.train_features,
+            categorical_features = dataset.cat_features,
             alter_dataframe = False)
 
     return transformed_dataset
-
-
-
-
-#===========================================
-#       OPTIMIZED PRE-PROCESSING
-#===========================================
-
-
-
-class OptimizedPreProcessing():
-
-
-    def __init__(self, dataset):
-
-        if not isinstance(dataset,ds.Dataset):
-            raise TypeError("Dataset must be of type aibias.dataset.Dataset")
-
-        self.dataset = dataset
-
-
-    def fit(self):
-        print('TODO')
-        return self
-
-
-    def transform(self):
-        print('TODO')
-
-
-    def fit_transform(self):
-        self.fit().transform()
-
 
 

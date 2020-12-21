@@ -13,10 +13,12 @@ import aibias.dataset as ds
 #=============================================
 
 
-def RejectOptionClassification(dataset,Theta):
+def RejectOption(dataset,Theta):
 
+    '''
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")
+    '''
 
     df = dataset.dataframe.copy()
 

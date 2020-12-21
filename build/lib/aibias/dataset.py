@@ -18,7 +18,8 @@ class Dataset():
                  map_func_pa=None, map_func_lab=None, title=None,
                  weights = None, pred_name = None, predictions = None,
                  map_func_pred=None, categorical_features=None,
-                 training_features=None, alter_dataframe=True):
+                 model = None, training_features=None, 
+                 alter_dataframe=True):
         """
         Arguments:
             df              - Pandas dataframe containing features, labels
@@ -57,7 +58,9 @@ class Dataset():
         self.instance_names = df.index.astype(str).tolist()
         self.pred_name      = pred_name
         self.predictions    = predictions
+        self.cat_features   = categorical_features
         self.train_features = training_features
+        self.model          = model
 
         self.protected_attribute_names = protected_attribute_names
         self.protected_attributes      = (df.loc[:,protected_attribute_names]
@@ -69,7 +72,21 @@ class Dataset():
                 self.dataframe[column] = LE.fit_transform(
                                          self.dataframe[column])
 
-
+        if self.pred_name:
+            if map_func_pred:
+                self.dataframe['Predictions']=map_func_pred(
+                        self.dataframe[pred_name].values.copy()
+                )
+            else:
+                self.dataframe['Predictions'] = (
+                        self.dataframe[pred_name].values.copy()
+                )
+        elif not self.predictions is None:
+            self.dataframe['Prediction'] = self.predictions
+            self.dataframe.loc[self.dataframe['Prediction']>0.5,
+                                          'Prediction_binary'] = 1
+            self.dataframe.loc[self.dataframe['Prediction']<=0.5,
+                                          'Prediction_binary'] = 0
 
         if weights is None:
             self.instance_weights = np.ones_like(self.instance_names,
@@ -93,21 +110,6 @@ class Dataset():
             self.dataframe['Protected']    = self.protected_attributes_binary
             self.dataframe['Label_binary'] = self.labels_binary
             self.dataframe['Weight']       = self.instance_weights
-            if self.pred_name:
-                if map_func_pred:
-                    self.dataframe['Predictions']=map_func_pred(
-                            self.dataframe[pred_name].values.copy()
-                    )
-                else:
-                    self.dataframe['Predictions'] = (
-                            self.dataframe[pred_name].values.copy()
-                    )
-            elif not self.predictions is None:
-                self.dataframe['Prediction'] = self.predictions
-                self.dataframe.loc[self.dataframe['Prediction']>0.5,
-                                              'Prediction_binary'] = 1
-                self.dataframe.loc[self.dataframe['Prediction']<=0.5,
-                                              'Prediction_binary'] = 0
 
         # Set dataset title
         if title:

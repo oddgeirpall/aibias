@@ -26,8 +26,10 @@ def DisparateImpact(dataset,reference='label'):
                     aibias.dataset.Dataset
     """
 
+    '''
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")
+    '''
 
     dataset.get_statistics(reference)
     pr_prot   = dataset.Statistics['Protected']['Percentage']
@@ -58,9 +60,11 @@ def StatisticalParityDifference(dataset,reference='label'):
         TypeError - If the given dataset is not of type 
                     aibias.dataset.Dataset
     """
-
+    
+    '''
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")
+    '''
 
     dataset.get_statistics(reference)
     pr_prot   = dataset.Statistics['Protected']['Percentage']
@@ -97,9 +101,11 @@ def AverageOddsDifference(dataset):
     """
     
     dataset.get_statistics()
-
+    
+    '''
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")
+    '''
 
     df = dataset.dataframe
 
@@ -158,8 +164,10 @@ def EqualOpportunityDifference(dataset):
 
     dataset.get_statistics()
 
+    '''
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")
+    '''
 
     df = dataset.dataframe
 

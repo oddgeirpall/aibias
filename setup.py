@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
         name="AIBias-Oddgeir",
-        version="0.0.1",
+        version="0.0.10",
         author="Oddgeir Georgsson",
         author_email="oddgeir.pall@gmail.com",
         description="Package for analysing and mitigating bias in datasets",
         long_description=long_description,
         long_description_content_type="text/markdown",
-        url="todo",
+        url="https://github.com/oddgeirpall/aibias",
         packages=setuptools.find_packages(),
         classifiers=[
             "Programming Language :: Python :: 3",

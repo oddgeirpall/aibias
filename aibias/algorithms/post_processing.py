@@ -13,7 +13,29 @@ import aibias.dataset as ds
 #=============================================
 
 
-def RejectOptionClassification(dataset,Theta):
+def RejectOption(dataset,Theta):
+    """
+    Takes in a dataset with non-discrete predictions by a classifier
+    and changes results within the critical area such that protected
+    individuals all receive a favorable label and non-protected
+    individuals all receive an unfavorable label. Base on the paper
+
+    'Decision Theory for Discrimination-aware Classification'
+    Faisal Kamiran et al. (2012)
+
+    Critical area = [0.5-Theta, 0.5+Theta], Theta in [0,0.5]
+
+    Arguemnts:
+        dataset - (aibias.dataset.Dataset) Dataset object
+        Theta   - (float) Determines the size of the critical area
+
+    Returns:
+        New dataset object with transformed predictions
+
+    Raises:
+        TypeError: Dataset must be of type aibias.dataset.Dataset
+        ValueError: Dataset must contain predictions
+    """
 
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")

@@ -21,10 +21,12 @@ class Visualization():
             self.datasets = datasets
         else:
             self.datasets = [datasets]
-
+        
+        '''
         for dataset in datasets:
             if not isinstance(dataset,ds.Dataset):
                 raise TypeError("Datasets must be of type aibias.dataset.Dataset")
+        '''
 
         self.metrics = [
                 'DisparateImpact',
@@ -39,7 +41,8 @@ class Visualization():
         self.reference = reference
         
 
-    def visualize_metric(self,metric,rotation=90,annotation=True, **kwargs):
+    def visualize_metric(self,metric,rotation=90,annotation=True, 
+            references = None, **kwargs):
 
         if (not metric in self.metrics and 
             not metric.lower() in self.metrics_short):
@@ -53,8 +56,11 @@ class Visualization():
             titles  = list()
             ylable  = self.metrics[0]
 
-            for ds in self.datasets:
-                di = met.DisparateImpact(ds,self.reference)
+            for i,ds in enumerate(self.datasets):
+                if not references is None:
+                    di = met.DisparateImpact(ds,references[i])
+                else:
+                    di = met.DisparateImpact(ds,self.reference)
                 values.append(di)
                 titles.append(ds.title)
 
@@ -64,8 +70,11 @@ class Visualization():
             titles  = list()
             ylable  = self.metrics[1]
 
-            for ds in self.datasets:
-                spd = met.StatisticalParityDifference(ds,self.reference)
+            for i,ds in enumerate(self.datasets):
+                if not references is None:
+                    spd = met.StatisticalParityDifference(ds,references[i])
+                else: 
+                    spd = met.StatisticalParityDifference(ds,self.reference)
                 values.append(spd)
                 titles.append(ds.title)
 
@@ -151,8 +160,9 @@ class Visualization():
         plt.show()
 
 
-    def visualize_metrics(self, rotation=90, **kwargs):
+    def visualize_metrics(self, rotation=90,
+            references = None, **kwargs):
 
         for metric in self.metrics:
-            self.visualize_metric(metric,rotation,**kwargs)
-
+            self.visualize_metric(metric,rotation,
+                    references=references, **kwargs)

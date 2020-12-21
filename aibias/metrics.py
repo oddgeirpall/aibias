@@ -58,7 +58,7 @@ def StatisticalParityDifference(dataset,reference='label'):
         TypeError - If the given dataset is not of type 
                     aibias.dataset.Dataset
     """
-
+    
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")
 
@@ -97,7 +97,7 @@ def AverageOddsDifference(dataset):
     """
     
     dataset.get_statistics()
-
+    
     if not isinstance(dataset,ds.Dataset):
         raise TypeError("Dataset must be of type aibias.dataset.Dataset")
 
