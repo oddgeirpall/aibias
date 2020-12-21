@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
         name="AIBias-Oddgeir",
-        version="0.0.10",
+        version="0.1.0",
         author="Oddgeir Georgsson",
         author_email="oddgeir.pall@gmail.com",
         description="Package for analysing and mitigating bias in datasets",
