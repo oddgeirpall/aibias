@@ -1,10 +1,10 @@
-## AI Bias Mitigation
+# AI Bias Mitigation
 
 
 Package that includes implementations on various metrics and algorithms
 that deal with mitigating biases in datasets and models.
 
-# Installation
+## Installation
 
 The package can be installed via pip
 
