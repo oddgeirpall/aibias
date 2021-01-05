@@ -238,7 +238,7 @@ class PR_remover():
 
         
 
-def PrejudiceRemover(dataset,epochs,eta=5,ntrain=1000):
+def PrejudiceRemover(dataset,epochs=1,eta=0.5,ntrain=1000):
     """
     Creates a PR_remover object that handles creation and training
     of a binary classifier (logistic regression) model using the
