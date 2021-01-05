@@ -1,5 +1,6 @@
 dist/
 build/
 .ipynb_checkpoints/
+models.ipynb
 test.ipynb
 AIBias_Oddgeir.egg-info/
